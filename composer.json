@@ -1,5 +1,5 @@
 {
-    "name": "enpii/enpii-boilerplate",
+    "name": "enpii/wp-site-enpii-boilerplate",
     "require": {
       "php": "^7.2.5|^8.0",
       "roots/bedrock-autoloader": "^1.0",
