@@ -1,5 +1,25 @@
 {
     "name": "enpii/wp-site-enpii-boilerplate",
+    "type": "wordpress-project",
+    "description": "The WordPress boilerplate for WordPress development with Laravel ready",
+    "license": "MIT",
+    "keywords": [
+      "wordpress",
+      "laravel",
+      "boilerplate",
+      "wordpress laravel"
+    ],
+    "authors": [
+      {
+          "name": "Enpii Team",
+          "email": "dev@enpii.com",
+          "homepage": "https://team.enpii.com"
+      },
+      {
+        "name": "Trac Nguyen",
+        "email": "npbtrac@yahoo.com"
+      }
+    ],
     "require": {
       "php": "^7.2.5|^8.0",
       "roots/bedrock-autoloader": "^1.0",
