@@ -18,3 +18,7 @@ plugins/**
 !themes
 themes/**
 !themes/.gitkeep
+
+# Put your themes, plugins exception here, e.g.
+# !plugins/hello-world
+# !plugins/hello-world/**
