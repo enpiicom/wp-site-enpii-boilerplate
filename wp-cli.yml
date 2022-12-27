@@ -1,0 +1,3 @@
+path: ./html
+server:
+  docroot: ./html

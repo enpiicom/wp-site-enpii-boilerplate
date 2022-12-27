@@ -1,0 +1,75 @@
+{
+    "name": "enpii/enpii-boilerplate",
+    "require": {
+      "php": "^7.2.5|^8.0",
+      "roots/bedrock-autoloader": "^1.0",
+      "vlucas/phpdotenv": "^4.0",
+      "johnpbloch/wordpress-core": "^6.0",
+      "enpii/enpii-base": "dev-develop",
+      "wpackagist-plugin/woocommerce": "^6.0",
+      "wpackagist-theme/storefront": "^4.0",
+      "wpackagist-theme/twentytwentythree": "^1.0.0"
+    },
+    "require-dev": {
+      "automattic/vipwpcs": "^2.3",
+      "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+      "phpcompatibility/php-compatibility": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://wpackagist.org",
+        "only": [
+          "wpackagist-plugin/*",
+          "wpackagist-theme/*"
+        ]
+      }
+    ],
+    "config": {
+      "allow-plugins": {
+        "composer/installers": true,
+        "johnpbloch/wordpress-core-installer": true,
+        "dealerdirect/phpcodesniffer-composer-installer": true
+      },
+      "vendor-dir": "./html/vendor",
+      "sort-packages": true
+    },
+    "extra": {
+      "installer-paths": {
+        "html/wp-content/mu-plugins/{$name}/": [
+          "type:wordpress-muplugin"
+        ],
+        "html/wp-content/themes/{$name}/": [
+          "type:wordpress-theme"
+        ],
+        "html/wp-content/plugins/{$name}/": [
+          "type:wordpress-plugin"
+        ]
+      }
+    },
+    "scripts": {
+      "post-install-cmd": [
+        "[ $COMPOSER_DEV_MODE -eq 0 ] || cp -r `find ./html/vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` html"
+      ],
+      "post-update-cmd": [
+        "[ $COMPOSER_DEV_MODE -eq 0 ] || cp -r `find ./html/vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` html"
+      ],
+      "dev-update": [
+        "@composer update --dev",
+        "cp -r `find ./html/vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` html"
+      ],
+      "phpcs": [
+        "./vendor/bin/phpcs"
+      ],
+      "phpunit": [
+        "./vendor/bin/phpunit"
+      ],
+      "test": [
+        "@phpcs",
+        "@phpunit"
+      ]
+    }
+  }
+  
