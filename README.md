@@ -1,5 +1,9 @@
 
 ## Development
+- Update the dependencies
+```
+XDEBUG_MODE=off composer update
+```
 
 ### Initialize
 - Create the project (development version)

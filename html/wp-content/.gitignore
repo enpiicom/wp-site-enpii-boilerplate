@@ -20,5 +20,8 @@ themes/**
 !themes/.gitkeep
 
 # Put your themes, plugins exception here, e.g.
-# !plugins/hello-world
-# !plugins/hello-world/**
+!plugins/demoda
+!plugins/demoda/**
+
+!themes/presenta
+!themes/presenta/**
