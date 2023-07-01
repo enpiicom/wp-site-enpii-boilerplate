@@ -17,6 +17,8 @@ class Demoda_WP_Plugin extends WP_Plugin {
 	{
 		// We use this class in the method body to avoid the loading of the class to the memory
 		// 	the Job_Command class is only loaded when the hook actually fires
-		Write_Meta_Tag_Job_Command::dispatchNow();
+		Write_Meta_Tag_Job_Command::dispatchNow([
+			'version' => DEMODA_PLUGIN_VERSION
+		]);
 	}
 }
