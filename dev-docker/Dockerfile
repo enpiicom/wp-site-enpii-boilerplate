@@ -7,11 +7,17 @@ ENV WP_DEBUG_LOG_PATH=${WP_DEBUG_LOG_PATH_ARG}
 
 # Install packages
 RUN apk update
-RUN apk --no-cache add nginx supervisor \
-    php7-fpm
+RUN apk --no-cache add nginx supervisor openrc icu-dev gcc make autoconf pkgconfig \
+    php7-dev php7-fpm php7-redis php7-imagick php7-tokenizer php7-memcached php7-xdebug php7-mcrypt \
+    php7-mysqli php7-pgsql php7-pdo_mysql php7-pdo_pgsql \
+    php7-zip php7-xmlwriter php7-bz2 php7-bcmath php7-protobuf php7-intl php7-fileinfo \
+    php7-apcu \
+    php7-pear
 
 # Switch to use a root user from here on
 USER root
+
+RUN pecl channel-update pecl.php.net
 
 # Customize nginx config
 COPY dev-docker/config/nginx/nginx.conf /etc/nginx/nginx.conf
@@ -61,7 +67,7 @@ WORKDIR /var/www
 RUN rm -rf ./html/vendor >/dev/null 2>&1
 RUN XDEBUG_MODE=off composer install --no-dev --ignore-platform-reqs
 
-######## Below 
+######## Below
 
 # Add another user to own the files to not allow nobody to modify files
 RUN adduser -D -H -G root devuser
