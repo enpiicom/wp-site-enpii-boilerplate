@@ -22,7 +22,6 @@
     ],
     "require": {
       "php": "^7.2.5|~8.0|~8.1",
-      "enpii/enpii-base": "dev-develop",
       "enpii/demoda": "*",
       "vlucas/phpdotenv": "^4.0",
       "mcaskill/composer-exclude-files": "^3.0.0",
@@ -74,6 +73,10 @@
       "sort-packages": true
     },
     "extra": {
+      "exclude-from-files": [
+        "laravel/framework/src/Illuminate/Foundation/helpers.php",
+        "laravel/framework/src/Illuminate/Support/helpers.php"
+      ],
       "installer-paths": {
         "html/wp-content/mu-plugins/{$name}/": [
           "type:wordpress-muplugin"

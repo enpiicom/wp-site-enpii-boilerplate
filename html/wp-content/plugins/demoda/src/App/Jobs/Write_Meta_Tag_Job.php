@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Enpii\Demoda\App\Commands;
+namespace Enpii\Demoda\App\Jobs;
 
-use Enpii_Base\Foundation\Shared\Base_Job_Command;
+use Enpii_Base\Foundation\Bus\Dispatchable_Trait;
+use Enpii_Base\Foundation\Jobs\Base_Job;
 use Enpii_Base\Foundation\Shared\Traits\Config_Trait;
 
-class Write_Meta_Tag_Job_Command extends Base_Job_Command {
+class Write_Meta_Tag_Job extends Base_Job {
 	use Config_Trait;
+	use Dispatchable_Trait;
 
 	private string $version;
 
