@@ -18,9 +18,6 @@ defined( 'DEMODA_PLUGIN_VERSION' ) || define( 'DEMODA_PLUGIN_VERSION', '1.0.0' )
 // This slug will be used to identify the plugin instance from the WP_Application container
 defined( 'DEMODA_PLUGIN_SLUG' ) || define( 'DEMODA_PLUGIN_SLUG', 'demoda' );
 
-// General fixed constants
-defined( 'DIR_SEP' ) || define( 'DIR_SEP', DIRECTORY_SEPARATOR );
-
 // We include composer autoload here
 if ( ! class_exists( Demoda_WP_Plugin::class ) ) {
 	require_once __DIR__ . DIR_SEP . 'vendor' . DIR_SEP . 'autoload.php';

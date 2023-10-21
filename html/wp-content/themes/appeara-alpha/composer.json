@@ -1,0 +1,40 @@
+{
+  "name": "enpii/appeara-alpha",
+  "type": "wordpress-theme",
+  "description": "The demo WordPress theme to use with Enpii Base plugin",
+  "license": "MIT",
+  "keywords": [
+    "wordpress",
+    "enpii",
+    "laravel",
+    "wordpress laravel",
+    "enpii-base"
+  ],
+  "authors": [
+    {
+      "name": "Enpii Team",
+      "email": "dev@enpii.com",
+      "homepage": "https://team.enpii.com"
+    },
+    {
+      "name": "Trac Nguyen",
+      "email": "npbtrac@yahoo.com"
+    }
+  ],
+  "require": {
+      "php": "^7.2.5|^8.0|^8.1"
+  },
+  "require-dev": {
+      "automattic/vipwpcs": "^2.3",
+      "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+      "phpcompatibility/php-compatibility": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Enpii\\Appeara_Alpha\\": "src",
+      "Enpii\\Appeara_Alpha\\Tests\\": "tests"
+    }
+  }
+}
