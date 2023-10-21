@@ -22,7 +22,6 @@
     ],
     "require": {
       "php": "^7.2.5|~8.0|~8.1",
-      "enpii/enpii-base": "dev-develop",
       "enpii/demoda": "*",
       "enpii/appeara-alpha": "*",
       "vlucas/phpdotenv": "^4.0",
@@ -80,11 +79,6 @@
     },
     "extra": {
       "exclude-from-files": [
-<<<<<<< HEAD
-        "/symfony/polyfill-php80/bootstrap.php",
-        "/symfony/var-dumper/Resources/functions/dump.php",
-=======
->>>>>>> feature/improvemnets
         "laravel/framework/src/Illuminate/Foundation/helpers.php",
         "laravel/framework/src/Illuminate/Support/helpers.php"
       ],
