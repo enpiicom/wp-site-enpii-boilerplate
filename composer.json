@@ -21,17 +21,29 @@
       }
     ],
     "require": {
-      "php": "^7.2.5|^8.0",
-      "roots/bedrock-autoloader": "^1.0",
+      "php": "^7.2.5|~8.0|~8.1",
+      "enpii/enpii-base": "dev-develop",
+      "enpii/demoda": "*",
+      "enpii/appeara-alpha": "*",
       "vlucas/phpdotenv": "^4.0",
       "mcaskill/composer-exclude-files": "^3.0.0",
       "johnpbloch/wordpress-core": "^6.0",
-      "enpii/enpii-base": "dev-develop",
-      "wpackagist-plugin/woocommerce": "^6.0",
+      "wpackagist-plugin/contact-form-7": "^5.7.4",
+      "wpackagist-plugin/error-log-viewer": "^1.1.2",
+      "wpackagist-plugin/query-monitor": "^3.11.2",
+      "wpackagist-plugin/woo-checkout-field-editor-pro": "^1.8.1",
+      "wpackagist-plugin/woocommerce-product-price-based-on-countries": "^3.1.0",
+      "wpackagist-plugin/nextend-facebook-connect": "^3.1.7",
+      "wpackagist-plugin/woocommerce": "^7.0",
+      "wpackagist-plugin/yith-woocommerce-wishlist": "^3.18.0",
       "wpackagist-theme/storefront": "^4.0",
       "wpackagist-theme/twentytwentythree": "^1.0.0"
     },
     "require-dev": {
+      "10up/wp_mock": "dev-trunk",
+      "codeception/codeception": "^4.2",
+      "codeception/module-asserts": "2.0.1",
+      "codeception/module-phpbrowser": "^1.0.0",
       "automattic/vipwpcs": "^2.3",
       "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
       "phpcompatibility/php-compatibility": "*"
@@ -46,6 +58,14 @@
           "wpackagist-plugin/*",
           "wpackagist-theme/*"
         ]
+      },
+      {
+        "type": "path",
+        "url": "./html/wp-content/plugins/demoda"
+      },
+      {
+        "type": "path",
+        "url": "./html/wp-content/themes/appeara-alpha"
       }
     ],
     "config": {
@@ -60,8 +80,11 @@
     },
     "extra": {
       "exclude-from-files": [
+<<<<<<< HEAD
         "/symfony/polyfill-php80/bootstrap.php",
         "/symfony/var-dumper/Resources/functions/dump.php",
+=======
+>>>>>>> feature/improvemnets
         "laravel/framework/src/Illuminate/Foundation/helpers.php",
         "laravel/framework/src/Illuminate/Support/helpers.php"
       ],
