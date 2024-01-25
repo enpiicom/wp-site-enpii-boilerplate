@@ -18,16 +18,16 @@
  * @package WordPress
  */
 
-// We include composer directory after all base WP stuff loaded
-require_once dirname(__FILE__) . '/html/vendor/autoload.php';
+require_once dirname(__FILE__) . '/vendor/autoload.php';
 
-// We try to parse the .env file and put values to env
-$env_file = realpath(__DIR__.DIRECTORY_SEPARATOR.'.env');
+$dotenv_loader = new josegonzalez\Dotenv\Loader( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . '.env' );
+// Parse the .env file and send the parsed .env file to the $_ENV variable
+//	and put to getenv()
+$dotenv_loader->parse()->toEnv()->putenv( true );
 
-if (file_exists($env_file)) {
-	$dotenv = Dotenv\Dotenv::createImmutable( dirname( $env_file ) );
-	$dotenv->load();
-}
+// We want to define this constant for getting the correct vendor folder
+//	in plugins, mu-plugins, themes..
+define( 'COMPOSER_VENDOR_DIR', dirname( __FILE__ ) . '/vendor' );
 
 // ** MySQL settings ** //
 /** The name of the database for WordPress */
@@ -41,26 +41,31 @@ define( 'DB_PASSWORD', getenv( 'DB_PASSWORD' ) );
 
 /** MySQL hostname */
 define( 'DB_HOST', getenv( 'DB_HOST' ) );
-define( 'DB_PORT', getenv( 'DB_PORT' ) ?: '3306' );
-define( 'DB_SOCKET', getenv( 'DB_SOCKET' ) ?: null );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', getenv( 'DB_CHARSET' ) ?: 'utf8mb4' );
+define( 'DB_CHARSET', 'utf8' );
 
 /** The Database Collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', getenv( 'DB_COLLATE' ) ?: 'utf8mb4_unicode_ci' );
+define( 'DB_COLLATE', '' );
 
-define( 'DB_TABLE_PREFIX', getenv( 'DB_TABLE_PREFIX' ) ?: 'wp_' );
-define( 'DB_STRICT_MODE', ! ! getenv( 'DB_STRICT_MODE' ) );
-define( 'DB_ENGINE', getenv( 'DB_ENGINE' ) ?: null );
+define( 'DB_TABLE_PREFIX', getenv( 'DB_TABLE_PREFIX' ) ? getenv( 'DB_TABLE_PREFIX' ) : 'wp_' );
 
-/**
- * WordPress Database Table prefix.
- *
- * You can have multiple installations in one database if you give each
- * a unique prefix. Only numbers, letters, and underscores please!
- */
-$table_prefix = DB_TABLE_PREFIX;
+// Extra db params
+if ( getenv( 'DB_PORT' ) ) {
+	define( 'DB_PORT', getenv( 'DB_PORT' ) );
+}
+
+if ( getenv( 'DB_SOCKET' ) && ! DB_HOST ) {
+	define( 'DB_SOCKET', getenv( 'DB_SOCKET' ) );
+}
+
+if ( getenv( 'DB_STRICT_MODE' ) ) {
+	define( 'DB_STRICT_MODE', getenv( 'DB_STRICT_MODE' ) );
+}
+
+if ( getenv( 'DB_ENGINE' ) ) {
+	define( 'DB_ENGINE', getenv( 'DB_ENGINE' ) );
+}
 
 /**
  * Authentication Unique Keys and Salts.
@@ -81,33 +86,44 @@ define( 'LOGGED_IN_SALT', getenv( 'LOGGED_IN_SALT' ) ?: hash( 'sha256', md5( php
 define( 'NONCE_SALT', getenv( 'NONCE_SALT' ) ?: hash( 'sha256', md5( php_uname( 'n' ).'8' ) ) );
 define( 'WP_CACHE_KEY_SALT', getenv( 'WP_CACHE_KEY_SALT' ) ?: hash( 'sha256', md5( php_uname( 'n' ).'9' ) ) );
 
-/* That's all, stop editing! Happy blogging. */
-define( 'WP_ENV', getenv( 'WP_ENV' ) ?: 'production' );
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix = DB_TABLE_PREFIX;
 
-define( 'WP_DEBUG', getenv( 'WP_DEBUG' ) ? ! ! getenv( 'WP_DEBUG' ) : false );
-define( 'WP_DEBUG_DISPLAY', getenv( 'WP_DEBUG_DISPLAY' ) ? ! ! getenv( 'WP_DEBUG_DISPLAY' ) : false );
-// set to 'true' means the default debug.log file would be wp-content/debug.log
-define( 'WP_DEBUG_LOG', (getenv( 'WP_DEBUG_LOG_PATH' ) ?: WP_CONTENT_DIR ) . DIRECTORY_SEPARATOR . 'debug.log');
+/* That's all, stop editing! Happy blogging. */
+define( 'WP_ENV', getenv( 'WP_ENV' ) );
+define( 'WP_DEBUG', isset($debug_override) ? $debug_override : ! ! getenv( 'WP_DEBUG' ) );
+define( 'WP_DEBUG_DISPLAY', ! ! getenv( 'WP_DEBUG_DISPLAY' )  );
+define( 'WP_DEBUG_LOG', ( getenv( 'WP_DEBUG_LOG' ) ? getenv( 'WP_DEBUG_LOG' ) : 1 ) ); // set to 'true' or 1 means the default debug.log file would be wp-content/debug.log
+
 define( 'SAVEQUERIES', ! ! getenv( 'SAVEQUERIES' ) );
 
-define('ADMIN_COOKIE_PATH', getenv( 'ADMIN_COOKIE_PATH' ) ?: '/');
-define('COOKIE_DOMAIN', getenv( 'COOKIE_DOMAIN' ) ?: '');
-define('COOKIEPATH', getenv( 'COOKIEPATH' ) ?: '');
-define('SITECOOKIEPATH', getenv( 'SITECOOKIEPATH' ) ?: '');
+// For Multisite
+// https://wordpress.org/documentation/article/nginx/
+define( 'WP_ALLOW_MULTISITE', isset($_ENV['WP_ALLOW_MULTISITE']) ? ! ! getenv( 'WP_ALLOW_MULTISITE' ) : false );
+define( 'MULTISITE', isset($_ENV['MULTISITE']) ? ! ! getenv( 'MULTISITE' ) : false );
+define( 'SUBDOMAIN_INSTALL', isset($_ENV['SUBDOMAIN_INSTALL']) ? ! ! getenv( 'SUBDOMAIN_INSTALL' ) : false );
+define( 'DOMAIN_CURRENT_SITE', isset($_ENV['DOMAIN_CURRENT_SITE']) ? getenv( 'DOMAIN_CURRENT_SITE' ) : '' );
+define( 'PATH_CURRENT_SITE', isset($_ENV['PATH_CURRENT_SITE']) ? getenv( 'PATH_CURRENT_SITE' ) : '/' );
+define( 'SITE_ID_CURRENT_SITE', isset($_ENV['SITE_ID_CURRENT_SITE']) ? (int) getenv( 'SITE_ID_CURRENT_SITE' ) : 1 );
+define( 'BLOG_ID_CURRENT_SITE', isset($_ENV['BLOG_ID_CURRENT_SITE']) ? (int) getenv( 'BLOG_ID_CURRENT_SITE' ) : 1 );
 
-define( 'ALLOW_UNFILTERED_UPLOADS', getenv( 'ALLOW_UNFILTERED_UPLOADS' ) ?: false);
-
-/* Multisite */
-define( 'WP_ALLOW_MULTISITE', getenv( 'WP_ALLOW_MULTISITE' ) ? !! getenv( 'WP_ALLOW_MULTISITE' ) : false );
-if (WP_ALLOW_MULTISITE) {
-	define( 'MULTISITE', getenv( 'MULTISITE' ) ? !! getenv( 'MULTISITE' ) : true );
-	define( 'SUBDOMAIN_INSTALL', getenv( 'SUBDOMAIN_INSTALL' ) ? !! getenv( 'SUBDOMAIN_INSTALL' ) : true );
-	define( 'DOMAIN_CURRENT_SITE', getenv( 'DOMAIN_CURRENT_SITE' ) ?: 'network.tamara-demo.com' );
-	define( 'PATH_CURRENT_SITE', getenv( 'PATH_CURRENT_SITE' ) ?: '/' );
-	define( 'SITE_ID_CURRENT_SITE', getenv( 'SITE_ID_CURRENT_SITE' ) ?: 1 );
-	define( 'BLOG_ID_CURRENT_SITE', getenv( 'BLOG_ID_CURRENT_SITE' ) ?: 1 );
+// Important on using different domain
+// The domain structure should be: a domain for the main site of the network and sub-domains for the sub-site or other domains for the sub site e.g.:
+//	- demo.dev-srv.net for the main site
+//  - sub1.demo.dev-srv.net sub2.demo.dev-srv.net ... for the sub sites
+//	- or abc.com, xyz.dev ... for the sub sites, this time, the cookie domain
+//		should be set to that domain
+if ( MULTISITE ) {
+	$current_domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+	if ($current_domain and strpos($current_domain, DOMAIN_CURRENT_SITE) === false) {
+		define( 'COOKIE_DOMAIN', $current_domain );
+	}
 }
-
 
 // ## Below snippets are for installing plugins, themes from the Admin Dashboard
 // define( 'FS_METHOD', 'direct' );
@@ -121,32 +137,22 @@ if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_P
 	$_SERVER['HTTPS'] = 'on';
 }
 
-define('WP_FORCE_HTTPS', getenv('WP_FORCE_HTTPS') ? !! getenv('WP_FORCE_HTTPS'): false);
-define('WP_HTTPS_EXCLUDE_DOMAINS', getenv('WP_HTTPS_EXCLUDE_DOMAINS') ?: '');
-if (!empty($_SERVER['HTTP_HOST']) && (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') && (WP_FORCE_HTTPS && strpos($_SERVER['HTTP_HOST'], WP_HTTPS_EXCLUDE_DOMAINS) === false)) {
-	header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 301);
-	exit;
-}
-
 if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 	$http_protocol = isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ? 'https' : 'http';
 	define( 'WP_HOME', $http_protocol . '://' . $_SERVER['HTTP_HOST'] );
 	define( 'WP_SITEURL', $http_protocol . '://' . $_SERVER['HTTP_HOST'] );
 }
 
-// For WP_Application wp_app()
-define( 'WP_APP_FORCE_CREATE_WP_APP_FOLDER', ! ! getenv( 'WP_APP_FORCE_CREATE_WP_APP_FOLDER' ) );
-
-define( 'AUTOMATIC_UPDATER_DISABLED', ! ! getenv( 'AUTOMATIC_UPDATER_DISABLED' ) ?: true);
-define( 'WP_AUTO_UPDATE_CORE', ! ! getenv( 'WP_AUTO_UPDATE_CORE' ) ?: false);
-
-define( 'DISABLE_WP_CRON', ! ! getenv( 'DISABLE_WP_CRON' ) ?: true);
-define( 'WP_CRON_LOCK_TIMEOUT', getenv( 'WP_CRON_LOCK_TIMEOUT' ) ?: 60 );
+// For WP App
+define( 'ENPII_BASE_WP_APP_BASE_PATH', getenv( 'ENPII_BASE_WP_APP_BASE_PATH' ) ?: '' );
+define( 'WP_APP_TELESCOPE_ENABLED', ! ! getenv( 'WP_APP_TELESCOPE_ENABLED' ) );
+define( 'WP_APP_TINKER_ENABLED', ! ! getenv( 'WP_APP_TINKER_ENABLED' ) );
+define( 'WP_APP_PASSPORT_ENABLED', ! ! getenv( 'WP_APP_PASSPORT_ENABLED' ) );
+define( 'ARTISAN_BINARY', isset($_ENV['ARTISAN_BINARY']) ? (string) getenv( 'ARTISAN_BINARY' ) : 'artisan' );
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	// For this installation, wp-config.php file is 1 level upper to `html` folder which is the WordPress directory
-	define( 'ABSPATH', dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'html' );
+	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
 }
 
 /** Sets up WordPress vars and included files. */

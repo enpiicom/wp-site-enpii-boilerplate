@@ -21,31 +21,24 @@
       }
     ],
     "require": {
-      "php": "^7.2.5|~8.0|~8.1",
+      "php": "^7.3|^8.0",
       "enpii/demoda": "*",
       "enpii/appeara-alpha": "*",
-      "vlucas/phpdotenv": "^4.0",
+      "josegonzalez/dotenv": "4.0.0",
       "mcaskill/composer-exclude-files": "^3.0.0",
       "johnpbloch/wordpress-core": "^6.0",
-      "wpackagist-plugin/contact-form-7": "^5.7.4",
-      "wpackagist-plugin/error-log-viewer": "^1.1.2",
-      "wpackagist-plugin/query-monitor": "^3.11.2",
-      "wpackagist-plugin/woo-checkout-field-editor-pro": "^1.8.1",
-      "wpackagist-plugin/woocommerce-product-price-based-on-countries": "^3.1.0",
-      "wpackagist-plugin/nextend-facebook-connect": "^3.1.7",
-      "wpackagist-plugin/woocommerce": "^7.0",
-      "wpackagist-plugin/yith-woocommerce-wishlist": "^3.18.0",
+      "wp-plugins/woocommerce": "^8.0",
       "wpackagist-theme/storefront": "^4.0",
       "wpackagist-theme/twentytwentythree": "^1.0.0"
     },
     "require-dev": {
-      "10up/wp_mock": "dev-trunk",
-      "codeception/codeception": "^4.2",
-      "codeception/module-asserts": "2.0.1",
-      "codeception/module-phpbrowser": "^1.0.0",
-      "automattic/vipwpcs": "^2.3",
-      "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
-      "phpcompatibility/php-compatibility": "*"
+      "10up/wp_mock": "~0.5.0|^1.0.0",
+      "automattic/vipwpcs": "^3.0.0",
+      "phpcompatibility/php-compatibility": "^9.3.5",
+      "symfony/console": "^5.4.0",
+      "codeception/codeception": "^5.0.0",
+      "codeception/module-asserts": "^3.0",
+      "codeception/module-phpbrowser": "^3.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -59,22 +52,35 @@
         ]
       },
       {
-        "type": "path",
-        "url": "./html/wp-content/plugins/demoda"
+        "type": "package",
+        "package": {
+          "name": "wp-plugins/woocommerce",
+          "version": "8.1.0",
+          "type": "wordpress-plugin",
+          "dist": {
+            "type": "zip",
+            "url": "https://downloads.wordpress.org/plugin/woocommerce.8.1.0.zip"
+          }
+        }
       },
       {
         "type": "path",
-        "url": "./html/wp-content/themes/appeara-alpha"
+        "url": "./wp-content/plugins/demoda"
+      },
+      {
+        "type": "path",
+        "url": "./wp-content/themes/appeara-alpha"
       }
     ],
     "config": {
+      "platform-check": true,
       "allow-plugins": {
             "composer/installers": true,
             "johnpbloch/wordpress-core-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "mcaskill/composer-exclude-files": true
         },
-      "vendor-dir": "./html/vendor",
+      "vendor-dir": "./vendor",
       "sort-packages": true
     },
     "extra": {
@@ -83,27 +89,30 @@
         "laravel/framework/src/Illuminate/Support/helpers.php"
       ],
       "installer-paths": {
-        "html/wp-content/mu-plugins/{$name}/": [
+        "wp-content/mu-plugins/{$name}/": [
           "type:wordpress-muplugin"
         ],
-        "html/wp-content/themes/{$name}/": [
+        "wp-content/themes/{$name}/": [
           "type:wordpress-theme"
         ],
-        "html/wp-content/plugins/{$name}/": [
+        "wp-content/plugins/{$name}/": [
           "type:wordpress-plugin"
         ]
       }
     },
     "scripts": {
       "post-install-cmd": [
-        "cp -r `find ./html/vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` html"
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` ./",
+        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
       ],
       "post-update-cmd": [
-        "cp -r `find ./html/vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` html"
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` ./",
+        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
       ],
       "dev-update": [
         "@composer update --dev",
-        "cp -r `find ./html/vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` html"
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` ./",
+        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
       ],
       "phpcs": [
         "./vendor/bin/phpcs"
