@@ -27,7 +27,7 @@
       "josegonzalez/dotenv": "4.0.0",
       "mcaskill/composer-exclude-files": "^3.0.0",
       "johnpbloch/wordpress-core": "^6.0",
-      "wpackagist-plugin/woocommerce": "^8.0",
+      "wp-plugins/woocommerce": "^8.0",
       "wpackagist-theme/storefront": "^4.0",
       "wpackagist-theme/twentytwentythree": "^1.0.0"
     },
