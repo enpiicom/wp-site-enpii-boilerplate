@@ -1,3 +1,23 @@
+### Ignore all but the project
+*
+!.gitignore
+!.dev-docker
+!.dev-docs
+!.env.example
+!.dockerignore
+!.editorconfig
+!.env.example
+!.htaccess
+!composer.json
+!composer.lock
+!docker-compose.yml.example
+!LICENSE.md
+!README.md
+!wp-cli.yml
+!wp-config.php
+!wp-content
+!wp-app
+
 ### This Project
 # Dotenv
 .env
@@ -17,6 +37,7 @@ assets
 !assets/src
 !assets/dist
 
+### Popular
 # package management
 vendor
 node_modules
