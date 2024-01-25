@@ -1,118 +1,32 @@
 {
-    "name": "enpii/wp-site-enpii-boilerplate",
-    "type": "wordpress-project",
-    "description": "The WordPress boilerplate for WordPress development with Laravel ready",
-    "license": "MIT",
-    "keywords": [
-      "wordpress",
-      "laravel",
-      "boilerplate",
-      "wordpress laravel"
-    ],
-    "authors": [
-      {
-          "name": "Enpii Team",
-          "email": "dev@enpii.com",
-          "homepage": "https://team.enpii.com"
-      },
-      {
-        "name": "Trac Nguyen",
-        "email": "npbtrac@yahoo.com"
-      }
-    ],
-    "require": {
-      "php": "^7.3|^8.0",
-      "josegonzalez/dotenv": "4.0.0",
-      "mcaskill/composer-exclude-files": "^3.0.0",
-      "johnpbloch/wordpress-core": "^6.0",
-      "wp-plugins/woocommerce": "^8.0",
-      "wpackagist-theme/storefront": "^4.0",
-      "wpackagist-theme/twentytwentythree": "^1.0.0"
-    },
-    "require-dev": {
-      "10up/wp_mock": "~0.5.0|^1.0.0",
-      "automattic/vipwpcs": "^3.0.0",
-      "phpcompatibility/php-compatibility": "^9.3.5",
-      "symfony/console": "^5.4.0",
-      "codeception/codeception": "^5.0.0",
-      "codeception/module-asserts": "^3.0",
-      "codeception/module-phpbrowser": "^3.0"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-      {
-        "type": "composer",
-        "url": "https://wpackagist.org",
-        "only": [
-          "wpackagist-plugin/*",
-          "wpackagist-theme/*"
-        ]
-      },
-      {
-        "type": "package",
-        "package": {
-          "name": "wp-plugins/woocommerce",
-          "version": "8.1.0",
-          "type": "wordpress-plugin",
-          "dist": {
-            "type": "zip",
-            "url": "https://downloads.wordpress.org/plugin/woocommerce.8.1.0.zip"
-          }
-        }
-      }
-    ],
-    "config": {
-      "platform-check": true,
-      "allow-plugins": {
-            "composer/installers": true,
-            "johnpbloch/wordpress-core-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "mcaskill/composer-exclude-files": true
-        },
-      "vendor-dir": "./vendor",
-      "sort-packages": true
-    },
-    "extra": {
-      "exclude-from-files": [
-        "laravel/framework/src/Illuminate/Foundation/helpers.php",
-        "laravel/framework/src/Illuminate/Support/helpers.php"
-      ],
-      "installer-paths": {
-        "wp-content/mu-plugins/{$name}/": [
-          "type:wordpress-muplugin"
-        ],
-        "wp-content/themes/{$name}/": [
-          "type:wordpress-theme"
-        ],
-        "wp-content/plugins/{$name}/": [
-          "type:wordpress-plugin"
-        ]
-      }
-    },
-    "scripts": {
-      "post-install-cmd": [
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` ./",
-        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
-      ],
-      "post-update-cmd": [
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` ./",
-        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
-      ],
-      "dev-update": [
-        "@composer update --dev",
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'wp-content'` ./",
-        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
-      ],
-      "phpcs": [
-        "./vendor/bin/phpcs"
-      ],
-      "phpunit": [
-        "./vendor/bin/phpunit"
-      ],
-      "test": [
-        "@phpcs",
-        "@phpunit"
-      ]
+  "name": "johnpbloch/wordpress-core",
+  "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
+  "keywords": [
+    "wordpress",
+    "blog",
+    "cms"
+  ],
+  "type": "wordpress-core",
+  "homepage": "https://wordpress.org/",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "WordPress Community",
+      "homepage": "https://wordpress.org/about/"
     }
+  ],
+  "support": {
+    "issues": "https://core.trac.wordpress.org/",
+    "forum": "https://wordpress.org/support/",
+    "wiki": "https://codex.wordpress.org/",
+    "irc": "irc://irc.freenode.net/wordpress",
+    "source": "https://core.trac.wordpress.org/browser"
+  },
+  "require": {
+    "php": ">=7.0.0",
+    "ext-json": "*"
+  },
+  "provide": {
+    "wordpress/core-implementation": "6.4.2"
   }
+}
