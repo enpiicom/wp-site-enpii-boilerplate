@@ -62,14 +62,6 @@
             "url": "https://downloads.wordpress.org/plugin/woocommerce.8.1.0.zip"
           }
         }
-      },
-      {
-        "type": "path",
-        "url": "./wp-content/plugins/demoda"
-      },
-      {
-        "type": "path",
-        "url": "./wp-content/themes/appeara-alpha"
       }
     ],
     "config": {
