@@ -21,22 +21,14 @@
       }
     ],
     "require": {
-      "php": "^7.3|^8.0",
+      "enpii/enpii-base": "dev-wp-release",
       "josegonzalez/dotenv": "4.0.0",
       "mcaskill/composer-exclude-files": "^3.0.0",
-      "johnpbloch/wordpress-core": "^6.0",
-      "wp-plugins/woocommerce": "^8.0",
+      "johnpbloch/wordpress-core": "^6.4",
+      "wp-plugins/woocommerce": "^8.1.0",
+      "wpackagist-theme/twentytwentyfour": "^1.0",
       "wpackagist-theme/storefront": "^4.0",
-      "wpackagist-theme/twentytwentythree": "^1.0.0"
-    },
-    "require-dev": {
-      "10up/wp_mock": "~0.5.0|^1.0.0",
-      "automattic/vipwpcs": "^3.0.0",
-      "phpcompatibility/php-compatibility": "^9.3.5",
-      "symfony/console": "^5.4.0",
-      "codeception/codeception": "^5.0.0",
-      "codeception/module-asserts": "^3.0",
-      "codeception/module-phpbrowser": "^3.0"
+      "php": "^7.3|^8.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -92,17 +84,16 @@
     },
     "scripts": {
       "post-install-cmd": [
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|wp-cli.yml$|README.md$|LICENSE.md$'` ./",
-        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$|license.txt$|readme.html$'` ./",
+        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'license.txt|readme.html'`"
       ],
       "post-update-cmd": [
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|wp-cli.yml$|README.md$|LICENSE.md$'` ./",
-        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$|license.txt$|readme.html$'` ./",
+        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'license.txt|readme.html'`"
       ],
       "dev-update": [
-        "@composer update --dev",
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|wp-cli.yml$|README.md$|LICENSE.md$'` ./",
-        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -v 'composer.json'`"
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$|license.txt$|readme.html$'` ./",
+        "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'license.txt|readme.html'`"
       ],
       "phpcs": [
         "./vendor/bin/phpcs"

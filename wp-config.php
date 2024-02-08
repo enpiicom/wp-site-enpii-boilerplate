@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The base configuration for WordPress
  *
@@ -24,10 +25,6 @@ $dotenv_loader = new josegonzalez\Dotenv\Loader( dirname( __FILE__ ) . DIRECTORY
 // Parse the .env file and send the parsed .env file to the $_ENV variable
 //	and put to getenv()
 $dotenv_loader->parse()->toEnv()->putenv( true );
-
-// We want to define this constant for getting the correct vendor folder
-//	in plugins, mu-plugins, themes..
-define( 'COMPOSER_VENDOR_DIR', dirname( __FILE__ ) . '/vendor' );
 
 // ** MySQL settings ** //
 /** The name of the database for WordPress */
@@ -118,7 +115,7 @@ define( 'BLOG_ID_CURRENT_SITE', isset($_ENV['BLOG_ID_CURRENT_SITE']) ? (int) get
 //  - sub1.demo.dev-srv.net sub2.demo.dev-srv.net ... for the sub sites
 //	- or abc.com, xyz.dev ... for the sub sites, this time, the cookie domain
 //		should be set to that domain
-if ( MULTISITE ) {
+if (MULTISITE) {
 	$current_domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
 	if ($current_domain and strpos($current_domain, DOMAIN_CURRENT_SITE) === false) {
 		define( 'COOKIE_DOMAIN', $current_domain );
