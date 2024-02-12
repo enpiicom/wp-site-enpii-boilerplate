@@ -18,6 +18,11 @@
 !wp-content
 !wp-app
 
+!package.json
+!package.lock
+!yarn.lock
+!/webpack*
+
 ### This Project
 # Dotenv
 .env

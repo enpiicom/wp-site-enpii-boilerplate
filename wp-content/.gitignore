@@ -20,10 +20,8 @@ themes/**
 !themes/.gitkeep
 
 # Put your themes, plugins exception here, e.g.
-# !plugins/demoda
-# !plugins/demoda/**
+!plugins/demoda
+!plugins/demoda/**
 
-# !themes/appeara-alpha
-# !themes/appeara-alpha/**
-# !themes/appeara-beta
-# !themes/appeara-beta/**
+!themes/appeara-alpha
+!themes/appeara-alpha/**

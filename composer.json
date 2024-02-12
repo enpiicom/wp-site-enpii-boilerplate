@@ -21,14 +21,23 @@
       }
     ],
     "require": {
-      "enpii/enpii-base": "dev-wp-release",
       "josegonzalez/dotenv": "4.0.0",
       "mcaskill/composer-exclude-files": "^3.0.0",
-      "johnpbloch/wordpress-core": "^6.4",
-      "wp-plugins/woocommerce": "^8.1.0",
-      "wpackagist-theme/twentytwentyfour": "^1.0",
+      "johnpbloch/wordpress-core": "^6.0",
+      "wp-plugins/woocommerce": "^8.0",
       "wpackagist-theme/storefront": "^4.0",
+      "wpackagist-theme/twentytwentythree": "^1.0.0",
+      "enpii/demoda": "*",
+      "enpii/appeara-alpha": "*",
       "php": "^7.3|^8.0"
+    },
+    "require-dev": {
+      "10up/wp_mock": "~0.5.0|^1.0.0",
+      "automattic/vipwpcs": "^3.0.0",
+      "phpcompatibility/php-compatibility": "^9.3.5",
+      "codeception/codeception": "^4.2.0|^5.0.0",
+      "codeception/module-asserts": "^1.3.0|^3.0",
+      "codeception/module-phpbrowser": "^1.3.0|^3.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -40,6 +49,14 @@
           "wpackagist-plugin/*",
           "wpackagist-theme/*"
         ]
+      },
+      {
+        "type": "path",
+        "url": "./wp-content/plugins/demoda"
+      },
+      {
+        "type": "path",
+        "url": "./wp-content/themes/appeara-alpha"
       },
       {
         "type": "package",
@@ -55,7 +72,7 @@
       }
     ],
     "config": {
-      "platform-check": true,
+      "platform-check": false,
       "allow-plugins": {
             "composer/installers": true,
             "johnpbloch/wordpress-core-installer": true,
@@ -84,15 +101,15 @@
     },
     "scripts": {
       "post-install-cmd": [
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$|license.txt$|readme.html$'` ./",
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$'` ./",
         "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'license.txt|readme.html'`"
       ],
       "post-update-cmd": [
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$|license.txt$|readme.html$'` ./",
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$'` ./",
         "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'license.txt|readme.html'`"
       ],
       "dev-update": [
-        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$|license.txt$|readme.html$'` ./",
+        "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$'` ./",
         "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'license.txt|readme.html'`"
       ],
       "phpcs": [
