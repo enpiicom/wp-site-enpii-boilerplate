@@ -27,13 +27,11 @@ class Appeara_Alpha_WP_Theme extends WP_Theme {
 	 * @return void
 	 * @throws BindingResolutionException
 	 */
-	public function manipulate_hooks(): void
-	{
-		add_action( 'after_setup_theme', [$this, 'setup_theme']);
+	public function manipulate_hooks(): void {
+		add_action( 'after_setup_theme', [ $this, 'setup_theme' ] );
 	}
 
-	public function setup_theme(): void
-	{
+	public function setup_theme(): void {
 		/**
 		 * Enable support for site logo.
 		 */
@@ -41,12 +39,12 @@ class Appeara_Alpha_WP_Theme extends WP_Theme {
 			'custom-logo',
 			apply_filters(
 				$this->get_theme_slug() . '_custom_logo_args',
-				array(
+				[
 					'height'      => 110,
 					'width'       => 470,
 					'flex-width'  => true,
 					'flex-height' => true,
-				)
+				]
 			)
 		);
 

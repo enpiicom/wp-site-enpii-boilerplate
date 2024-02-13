@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Route;
 class Register_Demoda_Routes {
 	use Executable_Trait;
 
-	public function handle(): void
-	{
-		Route::get( 'demoda', [Demoda_Controller::class, 'hello'] );
+	public function handle(): void {
+		Route::get( 'demoda', [ Demoda_Controller::class, 'hello' ] );
 	}
 }

@@ -13,13 +13,11 @@ class Write_Meta_Tag {
 
 	private $version;
 
-	public function __construct(array $config)
-	{
-		$this->bind_config($config, true);
+	public function __construct( array $config ) {
+		$this->bind_config( $config, true );
 	}
 
-	public function handle(): void
-	{
-		echo sprintf('<meta name="generator" content="Demoda %s" />', $this->version);
+	public function handle(): void {
+		printf( '<meta name="generator" content="Demoda %s" />', esc_attr( $this->version ) );
 	}
 }

@@ -13,59 +13,69 @@ use Enpii\Demoda\App\WP\Demoda_WP_Plugin;
 use Enpii\Demoda\App\Support\Demoda_Helper;
 
 // Update these constants whenever you bump the version
-//	We put this constant here for the convenience when bump the version
+//  We put this constant here for the convenience when bump the version
 defined( 'DEMODA_PLUGIN_VERSION' ) || define( 'DEMODA_PLUGIN_VERSION', '1.0.0' );
 defined( 'DEMODA_PLUGIN_SLUG' ) || define( 'DEMODA_PLUGIN_SLUG', 'demoda' );
 
 $autoload_file = __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-if ( ! class_exists(Demoda_WP_Plugin::class) ) {
+if ( ! class_exists( Demoda_WP_Plugin::class ) ) {
 	require_once $autoload_file;
 }
 
 /**
- | We need to check the plugin mandatory requirements first
+| We need to check the plugin mandatory requirements first
  */
 // It's better to check the prerequisites using the `plugins_loaded`, low priority,
-//	rather than the activation hook because there is a case where this plugin is already
-//	enabled but then the mandatory prerequisites are disabled after
+//  rather than the activation hook because there is a case where this plugin is already
+//  enabled but then the mandatory prerequisites are disabled after
 // We need to use the hook `plugins_loaded` here rather than put to the WP Plugin class
-//	because there is the posibility Enpii Base or WooCommerce not loaded
-//	and the WP Plugin use the resources from these 2 therefore it may produce errrors
-add_action( 'plugins_loaded', function() {
-	$error_message = '';
-	if (! Demoda_Helper::check_enpii_base_plugin()) {
-		$error_message .= $error_message ? '<br />' : '';
-		$error_message .= sprintf( __( 'Plugin <strong>%s</strong> is required.', Demoda_Helper::TEXT_DOMAIN ), 'Enpii Base');
-	}
+//  because there is the posibility Enpii Base or WooCommerce not loaded
+//  and the WP Plugin use the resources from these 2 therefore it may produce errrors
+add_action(
+	'plugins_loaded',
+	function () {
+		$error_message = '';
+		if ( ! Demoda_Helper::check_enpii_base_plugin() ) {
+			$error_message .= $error_message ? '<br />' : '';
+			$error_message .= sprintf( __( 'Plugin <strong>%s</strong> is required.', 'enpii' ), 'Enpii Base' );
+		}
 
-	if ($error_message) {
-		add_action( 'admin_notices', function() use ($error_message) {
-			$error_message = sprintf(
-				__( 'Plugin <strong>%s</strong> is disabled.', Demoda_Helper::TEXT_DOMAIN ),
-				'Demoda'
-			) . '<br />' . $error_message;
+		if ( $error_message ) {
+			add_action(
+				'admin_notices',
+				function () use ( $error_message ) {
+					$error_message = sprintf(
+						__( 'Plugin <strong>%s</strong> is disabled.', 'enpii' ),
+						'Demoda'
+					) . '<br />' . $error_message;
 
-			?>
+					?>
 			<div class="notice notice-warning is-dismissible">
-				<p><?php echo $error_message; ?></p>
+					<p><?php echo esc_html( $error_message ); ?></p>
 			</div>
-			<?php
-		} );
-		require_once ABSPATH . 'wp-admin/includes/plugin.php';
-		deactivate_plugins( plugin_basename( __FILE__ ) );
-	}
-
-	/**
-	 | We initiate the plugin later
-	*/
-	if ( Demoda_Helper::check_mandatory_prerequisites() ) {
-		// We register Tamara_Checkout_WP_Plugin as a Service Provider
-		add_action( App_Const::ACTION_WP_APP_LOADED, function() {
-			Demoda_WP_Plugin::init_with_wp_app(
-				DEMODA_PLUGIN_SLUG,
-				__DIR__,
-				plugin_dir_url( __FILE__ )
+					<?php
+				}
 			);
-		});
-	}
-}, -111 );
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+		}
+
+		/**
+		| We initiate the plugin later
+		*/
+		if ( Demoda_Helper::check_mandatory_prerequisites() ) {
+			// We register Tamara_Checkout_WP_Plugin as a Service Provider
+			add_action(
+				App_Const::ACTION_WP_APP_LOADED,
+				function () {
+					Demoda_WP_Plugin::init_with_wp_app(
+						DEMODA_PLUGIN_SLUG,
+						__DIR__,
+						plugin_dir_url( __FILE__ )
+					);
+				}
+			);
+		}
+	},
+	-111
+);

@@ -1,5 +1,5 @@
 <?php
-do_action('get_header');
+do_action( 'get_header' );
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -36,7 +36,7 @@ do_action('get_header');
 	</div><!-- #site-placeholder -->
 
 <?php
-do_action('get_footer');
+do_action( 'get_footer' );
 wp_footer();
 ?>
 

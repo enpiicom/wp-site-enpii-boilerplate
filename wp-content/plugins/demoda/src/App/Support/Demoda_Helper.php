@@ -8,7 +8,7 @@ class Demoda_Helper {
 	public const TEXT_DOMAIN = 'demoda';
 
 	public static function check_mandatory_prerequisites(): bool {
-		return version_compare(phpversion(), '7.3.0', '>=');
+		return version_compare( phpversion(), '7.3.0', '>=' );
 	}
 
 	public static function check_enpii_base_plugin(): bool {
