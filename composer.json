@@ -27,6 +27,7 @@
       "wp-plugins/woocommerce": "^8.0",
       "wpackagist-theme/storefront": "^4.0",
       "wpackagist-theme/twentytwentythree": "^1.0.0",
+      "enpii/enpii-base": "dev-wp-release",
       "enpii/demoda": "*",
       "enpii/appeara-alpha": "*",
       "php": "^7.3|^8.0"
@@ -100,6 +101,9 @@
       }
     },
     "scripts": {
+      "post-create-project-cmd": [
+        "cp .env.example .env"
+      ],
       "post-install-cmd": [
         "cp -r `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'wp-content$|composer.json$|composer.lock$|wp-cli.yml$|README.md$|LICENSE.md$'` ./",
         "rm -rf `find ./vendor/johnpbloch/wordpress-core -maxdepth 1 -mindepth 1 | cut -c3- | grep -vE 'license.txt|readme.html'`"

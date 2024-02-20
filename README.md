@@ -6,10 +6,18 @@ XDEBUG_MODE=off composer update
 ```
 
 ### Initialize
-- Create the project (development version)
+- Create the project (stable version)
 ```
-composer create-project -s dev enpii/wp-site-enpii-boilerplate <folder-name>
+composer create-project enpii/wp-site-enpii-boilerplate <folder-name>
 ```
+  - Create the project (development version)
+  ```
+  composer create-project -s dev enpii/wp-site-enpii-boilerplate <folder-name>
+  ```
+  in case you want to specify the branch
+  ```
+  composer create-project -s dev enpii/wp-site-enpii-boilerplate:dev-develop <folder-name>
+  ```
 - Copy the example environment file to the .env one
 ```
 cp .env.example .env

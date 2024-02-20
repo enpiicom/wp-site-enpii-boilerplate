@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ac69fb7727786854f8b5b4614926d2f",
+    "content-hash": "961d60dc1455dcaf1b0a885c10d99d66",
     "packages": [
         {
             "name": "composer/installers",
@@ -253,6 +253,67 @@
             "transport-options": {
                 "relative": true
             }
+        },
+        {
+            "name": "enpii/enpii-base",
+            "version": "dev-wp-release",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/enpiicom/wp-plugin-enpii-base.git",
+                "reference": "23b1ba2b0087c4b0208cb9f27e9210622fdb731f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/23b1ba2b0087c4b0208cb9f27e9210622fdb731f",
+                "reference": "23b1ba2b0087c4b0208cb9f27e9210622fdb731f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0.0"
+            },
+            "type": "wordpress-muplugin",
+            "extra": {
+                "exclude-from-files": [
+                    "laravel/framework/src/Illuminate/Foundation/helpers.php"
+                ]
+            },
+            "autoload": {
+                "files": [
+                    "./src/Foundation/Support/helpers-utils.php",
+                    "./src/Foundation/helpers-wp-app.php",
+                    "./src/Foundation/helpers-overrides.php",
+                    "./enpii-base-bootstrap.php",
+                    "./enpii-base-init.php"
+                ],
+                "psr-4": {
+                    "Enpii_Base\\": "src",
+                    "Enpii_Base\\Deps\\": "src-deps"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Trac Nguyen",
+                    "email": "npbtrac@yahoo.com",
+                    "homepage": "https://enpii.com/users/trac-nguyen",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Loi Le",
+                    "homepage": "https://enpii.com/users/loi-le",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The base plugin to have powerful Laravel development on WordPress",
+            "homepage": "https://enpii.com/wp-plugin-enpii-base",
+            "support": {
+                "issues": "https://github.com/enpiicom/wp-plugin-enpii-base/issues",
+                "source": "https://github.com/enpiicom/wp-plugin-enpii-base/tree/wp-release"
+            },
+            "time": "2024-01-09T09:25:04+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
@@ -3952,16 +4013,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.8.1",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "14f5fff1e64118595db5408e946f3a22c75807f7"
+                "reference": "d63cee4890a8afaf86a22e51ad4d97c91dd4579b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/14f5fff1e64118595db5408e946f3a22c75807f7",
-                "reference": "14f5fff1e64118595db5408e946f3a22c75807f7",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/d63cee4890a8afaf86a22e51ad4d97c91dd4579b",
+                "reference": "d63cee4890a8afaf86a22e51ad4d97c91dd4579b",
                 "shasum": ""
             },
             "require": {
@@ -4028,7 +4089,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-01-11T20:47:48+00:00"
+            "time": "2024-02-16T15:06:51+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -5473,7 +5534,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "enpii/enpii-base": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -22,6 +22,7 @@
 !package.lock
 !yarn.lock
 !/webpack*
+!/wp-enpii-base-artisan
 
 ### This Project
 # Dotenv
