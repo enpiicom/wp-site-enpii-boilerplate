@@ -10,7 +10,7 @@
 !.htaccess
 !composer.json
 !composer.lock
-!docker-compose.yml.example
+!docker-compose.yml
 !LICENSE.md
 !README.md
 !wp-cli.yml
