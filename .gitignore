@@ -19,10 +19,12 @@
 !wp-app
 
 !package.json
-!package.lock
+!package-lock.json
 !yarn.lock
+!/postcss.config.js
 !/webpack*
 !/wp-enpii-base-artisan
+!phpcs.xml
 
 ### This Project
 # Dotenv
@@ -37,7 +39,6 @@ wp-cli.local.yml
 # Docker compose
 docker-compose.override.yml
 docker-compose.local.yml
-docker-compose.yml
 
 assets
 !assets/src

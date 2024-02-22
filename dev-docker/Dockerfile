@@ -17,4 +17,9 @@ RUN chmod -R 777 /var/www/html/public/wp-content/uploads/ /var/www/html/public/w
 RUN mkdir -p /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
 RUN chmod 777 /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
 
+# Install Node 18 and Yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+	&& apt install -y nodejs \
+	&& npm install -g yarn
+
 WORKDIR /var/www/html/public

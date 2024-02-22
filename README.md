@@ -60,7 +60,7 @@ docker compose exec --user=webuser wordpress wp enpii-base info
 wp enpii-base info
 ```
 
-### Working with your project
+### Working with GIT
 - You can put your own plugins, themes, mu-plugins to corresponding folders. Then if you use git, you can add these things to your repository by:
   - Update the `./wp-content/.gitignore` to allow your plugins, mu-plugins, themes
   - e.g. you have a plugin called `hello-world`, you need to add this
@@ -69,3 +69,29 @@ wp enpii-base info
   !plugins/hello-world/**
   ```
   - Then you can `git add <your-plugin-folder>` to the repo
+
+### Compiling assets (CSS, JS)
+- This repo consists of a sample plugin **Demoda** and a sample theme **Appeara Alpha**, it has the webpack configs to compile plugin and theme CSS and JS
+
+To install dependencies
+```
+docker compose exec wordpress yarn install
+```
+
+Compile plugin assets
+```
+docker compose exec wordpress yarn build-plugin
+```
+or to watch and compile
+```
+docker compose exec wordpress yarn dev-plugin
+```
+
+Simila to the theme with
+```
+docker compose exec wordpress yarn build-theme
+```
+and watch
+```
+docker compose exec wordpress yarn dev-theme
+```
