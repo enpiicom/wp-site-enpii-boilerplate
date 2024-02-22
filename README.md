@@ -18,10 +18,9 @@ composer create-project enpii/wp-site-enpii-boilerplate <folder-name>
   ```
   composer create-project -s dev enpii/wp-site-enpii-boilerplate:dev-develop <folder-name>
   ```
-- Copy the example environment file to the .env one
+- Ensure that you have tne **.env** file, if it doesn't exists, you can copy from the example file
 ```
 cp .env.example .env
-cp docker-compose.yml.example docker-compose.yml
 ```
 - Then use the appropriate env variables for you working environment, remember to check the SALTS section to use correct ones.
 
