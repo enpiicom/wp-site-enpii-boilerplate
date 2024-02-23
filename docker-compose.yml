@@ -20,7 +20,8 @@ services:
       - /var/www/html/public/wp-content/upgrade
       - /var/www/html/public/wp-content/uploads
       # Miscs
-      - ./dev-docker/log/:/var/log/
+      - ./dev-docker/log/nginx/:/var/log/nginx/
+      - ./dev-docker/log/wordpress/:/var/log/wordpress/
     env_file:
       - ./.env
     environment:

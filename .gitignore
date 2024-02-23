@@ -1,8 +1,10 @@
 ### Ignore all but the project
 *
+!/dev-docker
+!/dev-docker/**
+!/dev-docs
+!/dev-docs/**
 !.gitignore
-!.dev-docker
-!.dev-docs
 !.env.example
 !.dockerignore
 !.editorconfig
