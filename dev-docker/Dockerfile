@@ -1,93 +1,25 @@
-FROM npbtrac/php:7.4-x86
-LABEL Maintainer="Trac Nguyen <npbtrac@yahoo.com>" \
-      Description="Lightweight container with Nginx 1.18 & PHP 7.4 based on Alpine Linux."
+FROM npbtrac/php81_web
 
-ARG WP_DEBUG_LOG_PATH_ARG="/var/log/wordpress"
-ENV WP_DEBUG_LOG_PATH=${WP_DEBUG_LOG_PATH_ARG}
+# Putting config files to their locations
+COPY ./dev-docker/config/nginx/http.conf /etc/nginx/site-opts.d/http.conf
+COPY ./dev-docker/config/nginx/https.conf /etc/nginx/site-opts.d/https.conf
 
-# Install packages
-RUN apk update
+COPY ./ /var/www/html/public
 
-RUN apk --no-cache add nginx supervisor openrc icu-dev gcc make autoconf pkgconfig \
-    php7-dev php7-fpm php7-redis php7-imagick php7-tokenizer php7-memcached php7-xdebug php7-mcrypt \
-    php7-mysqli php7-pgsql php7-pdo_mysql php7-pdo_pgsql \
-    php7-zip php7-xmlwriter php7-bz2 php7-bcmath php7-protobuf php7-intl php7-fileinfo \
-    php7-apcu \
-    php7-pear
-
-# Switch to use a root user from here on
-USER root
-
-RUN pecl channel-update pecl.php.net
-
-# Customize nginx config
-COPY dev-docker/config/nginx/nginx.conf /etc/nginx/nginx.conf
-
-# Custom .ini
-COPY dev-docker/config/php/custom.ini /etc/php7/conf.d/custom.ini
-
-# Customize php-fpm pool config
-COPY dev-docker/config/php/fpm/www.conf /etc/php7/php-fpm.d/www.conf
-
-# Configure supervisord
-COPY dev-docker/config/others/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-# Composer
-RUN curl -O https://getcomposer.org/download/latest-stable/composer.phar
-RUN chmod +x composer.phar
-RUN mv composer.phar /usr/local/bin/composer
+# Prepare folders
+RUN mkdir -p /var/www/html/public/wp-content/uploads/ /var/www/html/public/wp-content/upgrade/ /var/www/html/public/wp-content/cache/
+RUN chmod -R 777 /var/www/html/public/wp-content/uploads/ /var/www/html/public/wp-content/upgrade/ /var/www/html/public/wp-content/cache/
 
-# Setup document root and ensure needed directory created
-RUN mkdir -p /var/www/html >/dev/null 2>&1
-RUN mkdir -p /var/www/html/wp-content/mu-plugins >/dev/null 2>&1
-RUN mkdir -p /var/www/html/wp-content/cache >/dev/null 2>&1
-RUN mkdir -p /var/www/html/wp-content/uploads >/dev/null 2>&1
-RUN mkdir -p /var/www/html/wp-content/upgrade >/dev/null 2>&1
-RUN mkdir -p ${WP_DEBUG_LOG_PATH} >/dev/null 2>&1
+RUN mkdir -p /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
+RUN chmod 777 /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
 
-# Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /run && \
-  chown -R nobody.nobody /var/lib/nginx && \
-  chown -R nobody.nobody /var/log/nginx && \
-  chown -R nobody.nobody ${WP_DEBUG_LOG_PATH}
+# Install Node 18 and Yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+	&& apt install -y nodejs \
+	&& npm install -g yarn
 
-######## Update below here for each particular project
-COPY ./html /var/www/html
-COPY .env /var/www/.env
-COPY wp-config.php /var/www/wp-config.php
-COPY composer.json /var/www/composer.json
-COPY composer.lock /var/www/composer.lock
-COPY wp-cli.yml /var/www/wp-cli.yml
-
-WORKDIR /var/www
-RUN rm -rf ./html/vendor >/dev/null 2>&1
-RUN XDEBUG_MODE=off composer install --no-dev --ignore-platform-reqs
-
-######## Below
-
-# Add another user to own the files to not allow nobody to modify files
-RUN adduser -D -H -G root devuser
-RUN chown -R devuser:root /var/www
-RUN chmod -R 777 /var/www/html/wp-content/uploads /var/www/html/wp-content/cache /var/www/html/wp-content/upgrade
-
-# Switch to use a non-root user from here on
-USER nobody
-
-# Expose the port nginx is reachable on
-EXPOSE 8080
-
-# Let supervisord start nginx & php-fpm
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-
-# For output logs to the console
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
-
-# Configure a healthcheck to validate that everything is up&running
-HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
-
-WORKDIR /var/www
+WORKDIR /var/www/html/public

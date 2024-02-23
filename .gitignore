@@ -1,8 +1,10 @@
 ### Ignore all but the project
 *
+!/dev-docker
+!/dev-docker/**
+!/dev-docs
+!/dev-docs/**
 !.gitignore
-!.dev-docker
-!.dev-docs
 !.env.example
 !.dockerignore
 !.editorconfig
@@ -10,13 +12,21 @@
 !.htaccess
 !composer.json
 !composer.lock
-!docker-compose.yml.example
+!docker-compose.yml
 !LICENSE.md
 !README.md
 !wp-cli.yml
 !wp-config.php
 !wp-content
 !wp-app
+
+!package.json
+!package-lock.json
+!yarn.lock
+!/postcss.config.js
+!/webpack*
+!/wp-enpii-base-artisan
+!phpcs.xml
 
 ### This Project
 # Dotenv
@@ -31,7 +41,6 @@ wp-cli.local.yml
 # Docker compose
 docker-compose.override.yml
 docker-compose.local.yml
-docker-compose.yml
 
 assets
 !assets/src
