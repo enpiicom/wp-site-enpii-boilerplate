@@ -7,7 +7,6 @@ namespace Enpii\Demoda\App\WP;
 use Enpii\Demoda\App\Jobs\Register_Demoda_Api_Routes;
 use Enpii\Demoda\App\Jobs\Register_Demoda_Routes;
 use Enpii\Demoda\App\Jobs\Write_Meta_Tag;
-use Enpii\Demoda\App\Support\Demoda_Helper;
 use Enpii_Base\Deps\Illuminate\Contracts\Container\BindingResolutionException;
 use Enpii_Base\Foundation\WP\WP_Plugin;
 
@@ -33,13 +32,9 @@ class Demoda_WP_Plugin extends WP_Plugin {
 		return DEMODA_PLUGIN_VERSION;
 	}
 
-	public function get_text_domain(): string {
-		return Demoda_Helper::TEXT_DOMAIN;
-	}
-
 	public function add_meta_tag(): void {
 		// We use this class in the method body to avoid the loading of the class to the memory
-		//  the Job_Command class is only loaded when the hook actually fires
+		//  the job class is only loaded when the hook actually fires
 		Write_Meta_Tag::execute_now(
 			[
 				'version' => DEMODA_PLUGIN_VERSION,
