@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Enpii WP Boilerplate Package for WordPress Development",
   "scripts": {
+    "i18n:make-pot": "php -d xdebug.max_nesting_level=512 $(which wp) i18n make-pot --ignore-domain --exclude=\"node_modules/,languages/,assets/,vendor*/,tests/\" --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/enpiicom/wp-site-enpii-boilerplate/issues/\", \"Language-Team\":\"Enpii Team <dev@enpii.com>\",\"Last-Translator\":\"Enpii Team <dev@enpii.com>\"}'",
+    "i18n:update-po": "php -d xdebug.max_nesting_level=512 $(which wp) i18n update-po",
+    "i18n:make-mo": "php -d xdebug.max_nesting_level=512 $(which wp) i18n make-mo",
+    "phpcbf": "php -d xdebug.max_nesting_level=512 ./vendor/bin/phpcbf",
+    "phpcs": "php -d xdebug.max_nesting_level=512 ./vendor/bin/phpcs",
     "build-plugin": "webpack --config webpack-plugin.config.js --mode production",
     "dev-plugin": "webpack --config webpack-plugin.config.js --mode development --watch",
     "build-theme": "webpack --config webpack-theme.config.js --mode production",
