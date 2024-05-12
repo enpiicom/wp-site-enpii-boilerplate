@@ -1,9 +1,8 @@
-
-## Development
-- Update the dependencies
-```
-XDEBUG_MODE=off composer update
-```
+## Introduction
+This is the modern WordPress setup for shared-host development.
+- It uses Apache for Docker to make your development simple and it would be consistent for deployment to shared-host (mostly use Apache)
+- It includes task runner based on webpack to allow theme, plugins assets compiling
+- It also includes phpcs and phpcbf to ensure the the codestyle of the project
 
 ### Initialize
 - Create the project (stable version)
@@ -18,13 +17,17 @@ composer create-project enpii/wp-site-enpii-boilerplate <folder-name>
   ```
   composer create-project -s dev enpii/wp-site-enpii-boilerplate:dev-develop <folder-name>
   ```
-
 - Ensure that you have tne **.env** file, if it doesn't exists, you can copy from the example file
 ```
 cp .env.example .env
 ```
-
 - Then use the appropriate env variables for you working environment, remember to check the SALTS section to use correct ones.
+
+## Development
+- Update the dependencies
+```
+XDEBUG_MODE=off composer update
+```
 
 ### Deploy with Docker
 - Start all containers
@@ -32,7 +35,7 @@ cp .env.example .env
 docker-compose compose up -d
 ```
 then the website would be available at http://127.0.0.1:19080/
-(the port 19080 can be edited in **.env** file)
+(the port 19080 can be edited in **.env** file but you need to down and up the containers again)
 
 - Update composer with Docker
 ```
@@ -41,12 +44,13 @@ docker-compose exec -e XDEBUG_MODE=off wordpress composer update
 
 - Run phpcs
 ```
-docker-compose exec wordpress ./vendor/bin/phpcs
+docker compose exec wordpress yarn phpcs
 ```
-or run phpcbf to fix phpcs issues
+or
 ```
-docker-compose exec wordpress ./vendor/bin/phpcbf
+docker compose exec wordpress yarn phpcbf
 ```
+to fix the codestyle issue
 
 - Run wp-app artisan
 ```
@@ -95,7 +99,7 @@ or to watch and compile
 docker compose exec wordpress yarn dev-plugin
 ```
 
-Simila to the theme with
+Similar to the theme with
 ```
 docker compose exec wordpress yarn build-theme
 ```
