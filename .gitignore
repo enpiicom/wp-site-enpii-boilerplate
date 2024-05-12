@@ -9,7 +9,7 @@
 !.dockerignore
 !.editorconfig
 !.env.example
-!.htaccess
+!.htaccess.example
 !composer.json
 !composer.lock
 !docker-compose.yml

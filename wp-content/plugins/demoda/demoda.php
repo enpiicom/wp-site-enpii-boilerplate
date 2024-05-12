@@ -17,9 +17,8 @@ use Enpii\Demoda\App\Support\Demoda_Helper;
 defined( 'DEMODA_PLUGIN_VERSION' ) || define( 'DEMODA_PLUGIN_VERSION', '1.0.0' );
 defined( 'DEMODA_PLUGIN_SLUG' ) || define( 'DEMODA_PLUGIN_SLUG', 'demoda' );
 
-$autoload_file = __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 if ( ! class_exists( Demoda_WP_Plugin::class ) ) {
-	require_once $autoload_file;
+	require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 }
 
 /**

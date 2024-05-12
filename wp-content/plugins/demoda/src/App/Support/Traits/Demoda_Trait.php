@@ -13,7 +13,7 @@ trait Demoda_Trait {
 	 * @return Demoda_WP_Plugin
 	 * @throws BindingResolutionException
 	 */
-	protected function wp_plugin(): Demoda_WP_Plugin {
+	public function demoda_wp_plugin(): Demoda_WP_Plugin {
 		return Demoda_WP_Plugin::wp_app_instance();
 	}
 }
