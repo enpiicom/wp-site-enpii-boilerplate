@@ -147,8 +147,8 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 	$http_protocol = isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ? 'https' : 'http';
 
 	$wp_siteurl = $http_protocol . '://' . $_SERVER['HTTP_HOST'];
-	if ( getenv('WP_BASE_PATH') ) {
-		$wp_siteurl = $wp_siteurl . '/'. trim( getenv('WP_BASE_PATH'), '/' );
+	if ( PATH_CURRENT_SITE ) {
+		$wp_siteurl = $wp_siteurl . '/'. trim( PATH_CURRENT_SITE, '/' );
 	}
 
 	define( 'WP_HOME', $wp_siteurl );
