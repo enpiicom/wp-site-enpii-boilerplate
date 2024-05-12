@@ -24,13 +24,26 @@ COPY ./dev-docker/config/php/xdebug.ini /etc/php/8.0/cli/conf.d/20-xdebug.ini
 COPY ./dev-docker/init /init
 RUN chmod +x /init
 
-COPY ./ /var/www/html/public
+# COPY ./ /var/www/html/public
+
+# # Prepare folders
+# RUN mkdir -p /var/www/html/public/wp-content/uploads/ /var/www/html/public/wp-content/upgrade/ /var/www/html/public/wp-content/cache/
+# RUN chmod -R 777 /var/www/html/public/wp-content/uploads/ /var/www/html/public/wp-content/upgrade/ /var/www/html/public/wp-content/cache/
+
+# # To allow installing plugins themes via Admin Dashboard
+# RUN mkdir -p /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
+# RUN chmod 777 /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
+
+#### In case you want to host your website in a `sub-folder` in your web root folder
+COPY ./ /var/www/html/public/sub-folder
 
 # Prepare folders
-RUN mkdir -p /var/www/html/public/wp-content/uploads/ /var/www/html/public/wp-content/upgrade/ /var/www/html/public/wp-content/cache/
-RUN chmod -R 777 /var/www/html/public/wp-content/uploads/ /var/www/html/public/wp-content/upgrade/ /var/www/html/public/wp-content/cache/
+RUN mkdir -p /var/www/html/public/sub-folder/wp-content/uploads/ /var/www/html/public/tmp/wp-content/upgrade/ /var/www/html/public/sub-folder/wp-content/cache/
+RUN chmod -R 777 /var/www/html/public/sub-folder/wp-content/uploads/ /var/www/html/public/sub-folder/wp-content/upgrade/ /var/www/html/public/sub-folder/wp-content/cache/
 
-RUN mkdir -p /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
-RUN chmod 777 /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
+# To allow installing plugins themes via Admin Dashboard
+RUN mkdir -p /var/www/html/public/sub-folder/wp-content/plugins var/www/html/public/sub-folder/wp-content/themes
+RUN chmod 777 /var/www/html/public/sub-folder/wp-content/plugins var/www/html/public/sub-folder/wp-content/themes
+#### / `sub-folder`
 
 WORKDIR /var/www/html/public

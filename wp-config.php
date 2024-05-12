@@ -148,7 +148,7 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
 	$wp_siteurl = $http_protocol . '://' . $_SERVER['HTTP_HOST'];
 	if ( getenv('WP_BASE_PATH') ) {
-		$wp_siteurl = $wp_siteurl . '/'. getenv('WP_BASE_PATH');
+		$wp_siteurl = $wp_siteurl . '/'. trim( getenv('WP_BASE_PATH'), '/' );
 	}
 
 	define( 'WP_HOME', $wp_siteurl );

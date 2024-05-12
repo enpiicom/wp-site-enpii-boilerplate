@@ -1,0 +1,3 @@
+<FilesMatch "\.(env|example|config.js|yml)$">
+   Deny from all
+</FilesMatch>
