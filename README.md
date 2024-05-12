@@ -18,10 +18,12 @@ composer create-project enpii/wp-site-enpii-boilerplate <folder-name>
   ```
   composer create-project -s dev enpii/wp-site-enpii-boilerplate:dev-develop <folder-name>
   ```
+
 - Ensure that you have tne **.env** file, if it doesn't exists, you can copy from the example file
 ```
 cp .env.example .env
 ```
+
 - Then use the appropriate env variables for you working environment, remember to check the SALTS section to use correct ones.
 
 ### Deploy with Docker
@@ -31,14 +33,21 @@ docker-compose compose up -d
 ```
 then the website would be available at http://127.0.0.1:19080/
 (the port 19080 can be edited in **.env** file)
+
 - Update composer with Docker
 ```
 docker-compose exec -e XDEBUG_MODE=off wordpress composer update
 ```
+
 - Run phpcs
 ```
 docker-compose exec wordpress ./vendor/bin/phpcs
 ```
+or run phpcbf to fix phpcs issues
+```
+docker-compose exec wordpress ./vendor/bin/phpcbf
+```
+
 - Run wp-app artisan
 ```
 docker-compose exec --user=webuser wordpress ./wp-enpii-base-artisan wp-app:hello
