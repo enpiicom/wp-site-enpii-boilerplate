@@ -154,7 +154,7 @@
         },
         {
             "name": "enpii/appeara-alpha",
-            "version": "dev-feature/refactor-code",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "./wp-content/themes/appeara-alpha",
@@ -206,7 +206,7 @@
         },
         {
             "name": "enpii/demoda",
-            "version": "dev-feature/refactor-code",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "./wp-content/plugins/demoda",
@@ -261,12 +261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/enpiicom/wp-plugin-enpii-base.git",
-                "reference": "552de374dd5b5b3898a4417b1aff2914fbea9f4d"
+                "reference": "1c82e5020860198932d01c8472c8fe03eab4e959"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/552de374dd5b5b3898a4417b1aff2914fbea9f4d",
-                "reference": "552de374dd5b5b3898a4417b1aff2914fbea9f4d",
+                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/1c82e5020860198932d01c8472c8fe03eab4e959",
+                "reference": "1c82e5020860198932d01c8472c8fe03eab4e959",
                 "shasum": ""
             },
             "require": {
