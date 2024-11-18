@@ -32,7 +32,7 @@ XDEBUG_MODE=off composer update
 ### Deploy with Docker
 - Start all containers
 ```
-docker-compose compose up -d
+docker-compose up -d
 ```
 then the website would be available at http://127.0.0.1:19080/
 (the port 19080 can be edited in **.env** file but you need to down and up the containers again)
@@ -81,6 +81,10 @@ wp enpii-base info
   !plugins/hello-world/**
   ```
   - Then you can `git add <your-plugin-folder>` to the repo
+- To ensure the Git hook runs automatically on the server at the post-commit stage—executing phpcbf to fix PHP CodeSniffer (PHPCS) errors, running phpstan for verification, and staging modified files—contributors need to clone the repository and set up the `core.hooksPath` configuration. If `core.hooksPath` isn’t already configured, make sure it is set up by running:
+```
+git config core.hooksPath .githooks
+```
 
 ### Compiling assets (CSS, JS)
 - This repo consists of a sample plugin **Demoda** and a sample theme **Appeara Alpha**, it has the webpack configs to compile plugin and theme CSS and JS

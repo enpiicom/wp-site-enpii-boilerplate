@@ -154,7 +154,7 @@
         },
         {
             "name": "enpii/appeara-alpha",
-            "version": "dev-feature/add-git-hook",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "./wp-content/themes/appeara-alpha",
@@ -206,7 +206,7 @@
         },
         {
             "name": "enpii/demoda",
-            "version": "dev-feature/add-git-hook",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "./wp-content/plugins/demoda",

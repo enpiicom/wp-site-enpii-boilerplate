@@ -119,11 +119,15 @@
       "phpcs": [
         "./vendor/bin/phpcs"
       ],
+      "phpstan": [
+        "./vendor/bin/phpstan"
+      ],
       "phpunit": [
         "./vendor/bin/phpunit"
       ],
       "test": [
         "@phpcs",
+        "@phpstan",
         "@phpunit"
       ]
     }
