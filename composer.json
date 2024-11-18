@@ -36,7 +36,8 @@
     },
     "require-dev": {
       "automattic/vipwpcs": "^3.0.0",
-      "phpcompatibility/php-compatibility": "^9.3.5"
+      "phpcompatibility/php-compatibility": "^9.3.5",
+      "phpstan/phpstan": "~1.12"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
