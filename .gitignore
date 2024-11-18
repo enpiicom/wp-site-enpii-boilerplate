@@ -26,7 +26,11 @@
 !/postcss.config.js
 !/webpack*
 !/wp-enpii-base-artisan
-!phpcs.xml
+!phpcs.xml.dist
+!phpstan.neon.dist
+!.coderabbit.yaml
+!.githooks/
+!.githooks/**
 
 ### This Project
 # Dotenv

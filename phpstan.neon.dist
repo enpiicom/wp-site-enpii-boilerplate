@@ -1,0 +1,11 @@
+parameters:
+    level: max  # Set the analysis level (0-8 or 'max'). 'max' is the strictest.
+
+    # Excludes certain paths from analysis, such as vendor or test directories
+    excludePaths:
+        - vendor
+        - tests
+
+    # Define autoload files, if necessary
+    bootstrapFiles:
+        - vendor/autoload.php
