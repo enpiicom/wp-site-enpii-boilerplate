@@ -28,6 +28,8 @@
 !/wp-enpii-base-artisan
 !phpcs.xml.dist
 !phpstan.neon.dist
+!.githooks/
+!.githooks/**
 
 ### This Project
 # Dotenv

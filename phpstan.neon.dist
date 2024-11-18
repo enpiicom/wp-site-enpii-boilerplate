@@ -5,3 +5,7 @@ parameters:
     excludePaths:
         - vendor
         - tests
+
+    # Define autoload files, if necessary
+    bootstrapFiles:
+        - vendor/autoload.php
