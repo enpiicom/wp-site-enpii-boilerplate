@@ -28,6 +28,7 @@
 !/wp-enpii-base-artisan
 !phpcs.xml.dist
 !phpstan.neon.dist
+!.coderabbit.yaml
 !.githooks/
 !.githooks/**
 
