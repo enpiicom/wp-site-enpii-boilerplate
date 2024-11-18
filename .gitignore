@@ -30,7 +30,6 @@
 !phpstan.neon.dist
 !.githooks/
 !.githooks/**
-!test.php
 
 ### This Project
 # Dotenv
