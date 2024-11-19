@@ -261,12 +261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/enpiicom/wp-plugin-enpii-base.git",
-                "reference": "bd9338919c08d43e589e6a57f284371f9e14f805"
+                "reference": "4e9415cf03c878acc119910e486af3d014747644"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/bd9338919c08d43e589e6a57f284371f9e14f805",
-                "reference": "bd9338919c08d43e589e6a57f284371f9e14f805",
+                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/4e9415cf03c878acc119910e486af3d014747644",
+                "reference": "4e9415cf03c878acc119910e486af3d014747644",
                 "shasum": ""
             },
             "require": {
@@ -281,7 +281,8 @@
             "autoload": {
                 "files": [
                     "src/Foundation/Support/helpers-utils.php",
-                    "enpii-base.php"
+                    "./enpii-base-bootstrap.php",
+                    "./enpii-base-init.php"
                 ],
                 "psr-4": {
                     "Enpii_Base\\": "src",

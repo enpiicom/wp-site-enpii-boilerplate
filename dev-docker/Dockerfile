@@ -52,6 +52,9 @@ COPY ./ /var/www/html/public
 RUN mkdir -p /var/www/html/public/wp-content/uploads/ /var/www/html/public/wp-content/upgrade/ /var/www/html/public/wp-content/cache/
 RUN chmod -R 777 /var/www/html/public/wp-content/uploads/ /var/www/html/public/wp-content/upgrade/ /var/www/html/public/wp-content/cache/
 
+# Make sure wp filesystem has the right permission to prepare wp-app folders
+RUN chmod -R 755 /var/www/html/public/wp-admin/includes/class-wp-filesystem-direct.php
+
 # To allow installing plugins themes via Admin Dashboard
 RUN mkdir -p /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
 RUN chmod 777 /var/www/html/public/wp-content/plugins var/www/html/public/wp-content/themes
