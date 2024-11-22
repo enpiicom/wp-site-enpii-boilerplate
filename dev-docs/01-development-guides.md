@@ -19,11 +19,13 @@ composer create-project enpii/wp-site-enpii-boilerplate <folder-name>
   ```
   composer create-project -s dev enpii/wp-site-enpii-boilerplate:dev-develop <folder-name>
   ```
-- Ensure you have a **.env** file. If it doesn’t exist, copy it from the example:
+- Ensure both the **.env** and **.htaccess** files are present. If either file is missing, copy it from the example:
 ```
 cp .env.example .env
+cp .htaccess.example .htaccess
 ```
 - Update the **.env** file with the correct environment variables, especially the **SALTS** section, for your working environment.
+- Add the **.htaccess** file as needed to configure the web server for proper operation.
 
 ## Development Workflow
 ### Update Dependencies
