@@ -18,8 +18,16 @@
  * @package WordPress
  */
 
-require_once __DIR__ . '/vendor/autoload.php';
-require_once 'class-enpii-config.php';
+require_once dirname(__FILE__) . '/vendor/autoload.php';
+
+$dotenv_filepath = dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env';
+
+if ( file_exists( $dotenv_filepath ) ) {
+	$dotenv_loader = new josegonzalez\Dotenv\Loader( $dotenv_filepath );
+	// Parse the .env file and send the parsed .env file to the $_ENV variable
+	//	and put to getenv()
+	$dotenv_loader->parse()->toEnv()->putenv( true );
+}
 
 // We want to define this constant for getting the correct vendor folder
 //  in plugins, mu-plugins, themes..

@@ -2,7 +2,7 @@ services:
   wordpress:
     build:
       context: .
-      dockerfile: ./dev-docker/Dockerfile-nginx
+      dockerfile: ./dev-docker/Dockerfile
     ports:
       - ${HTTP_EXPOSING_PORT}:80
       - ${HTTPS_EXPOSING_PORT}:443

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbf94e45c0bc6a5610b41db64586b6e9",
+    "content-hash": "3cdbafd447ffd6305d8889ad6c0de137",
     "packages": [
         {
             "name": "brick/math",
@@ -1104,16 +1104,16 @@
         },
         {
             "name": "enpii/enpii-base",
-            "version": "dev-develop",
+            "version": "v0.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/enpiicom/wp-plugin-enpii-base.git",
-                "reference": "bf02edaa43863c6f789e0bc88d47e17a8a253513"
+                "reference": "b3ed448c98671a685cd31fe262b71b96726f558e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/bf02edaa43863c6f789e0bc88d47e17a8a253513",
-                "reference": "bf02edaa43863c6f789e0bc88d47e17a8a253513",
+                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/b3ed448c98671a685cd31fe262b71b96726f558e",
+                "reference": "b3ed448c98671a685cd31fe262b71b96726f558e",
                 "shasum": ""
             },
             "require": {
@@ -1139,6 +1139,7 @@
             "autoload": {
                 "files": [
                     "src/Foundation/Support/helpers-utils.php",
+                    "src/Enpii_Base_Init.php",
                     "./enpii-base-bootstrap.php",
                     "./enpii-base-init.php"
                 ],
@@ -1172,7 +1173,7 @@
             "homepage": "https://enpii.com/wp-plugin-enpii-base",
             "support": {
                 "issues": "https://github.com/enpiicom/wp-plugin-enpii-base/issues",
-                "source": "https://github.com/enpiicom/wp-plugin-enpii-base/tree/develop"
+                "source": "https://github.com/enpiicom/wp-plugin-enpii-base/tree/v0.8.6"
             },
             "time": "2024-05-23T20:14:04+00:00"
         },
@@ -1240,16 +1241,16 @@
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "6.7.0",
+            "version": "6.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "3b6bdf11cf72ecb3777914259604dda961798ce2"
+                "reference": "1975a1deaef23914b391f37314cc0e6a23ae16d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/3b6bdf11cf72ecb3777914259604dda961798ce2",
-                "reference": "3b6bdf11cf72ecb3777914259604dda961798ce2",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/1975a1deaef23914b391f37314cc0e6a23ae16d7",
+                "reference": "1975a1deaef23914b391f37314cc0e6a23ae16d7",
                 "shasum": ""
             },
             "require": {
@@ -1257,7 +1258,7 @@
                 "php": ">=7.2.24"
             },
             "provide": {
-                "wordpress/core-implementation": "6.7.0"
+                "wordpress/core-implementation": "6.7.1"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -1284,7 +1285,7 @@
                 "source": "https://core.trac.wordpress.org/browser",
                 "wiki": "https://codex.wordpress.org/"
             },
-            "time": "2024-11-14T16:46:24+00:00"
+            "time": "2024-11-21T14:47:02+00:00"
         },
         {
             "name": "josegonzalez/dotenv",
@@ -6335,9 +6336,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "enpii/enpii-base": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -29,7 +29,7 @@
       "wpackagist-theme/storefront": "^4.0",
       "wpackagist-theme/twentytwentyfour": "^1.0.0",
       "wpackagist-theme/twentytwentythree": "^1.0.0",
-      "enpii/enpii-base": "dev-develop",
+      "enpii/enpii-base": "^0.8.6",
       "enpii/demoda": "*",
       "enpii/appeara-alpha": "*",
       "php": "^7.3|^8.0"
