@@ -119,3 +119,12 @@ and watch
 ```
 docker compose exec wordpress yarn dev-theme
 ```
+## Troubleshooting
+- If you encounter the following PHP error message:
+	```
+	PHP Fatal error: Uncaught ReflectionException: Class "view" does not exist...
+	```
+	- This issue typically occurs because the application folders are not fully created during the setup process. To resolve this error, ensure that all necessary folders for the wp-app are properly set up by running the following command:
+	```
+	docker-compose exec --user=webuser wordpress wp enpii-base prepare
+	```
