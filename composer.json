@@ -29,7 +29,7 @@
       "wpackagist-theme/storefront": "^4.0",
       "wpackagist-theme/twentytwentyfour": "^1.0.0",
       "wpackagist-theme/twentytwentythree": "^1.0.0",
-      "enpii/enpii-base": "dev-wp-release",
+      "enpii/enpii-base": "^0.8.6",
       "enpii/demoda": "*",
       "enpii/appeara-alpha": "*",
       "php": "^7.3|^8.0"
@@ -85,8 +85,7 @@
     },
     "extra": {
       "exclude-from-files": [
-        "laravel/framework/src/Illuminate/Foundation/helpers.php",
-        "laravel/framework/src/Illuminate/Support/helpers.php"
+        "laravel/framework/src/Illuminate/Foundation/helpers.php"
       ],
       "installer-paths": {
         "wp-content/mu-plugins/{$name}/": [

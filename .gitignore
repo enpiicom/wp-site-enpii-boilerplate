@@ -13,6 +13,7 @@
 !composer.json
 !composer.lock
 !docker-compose.yml
+!docker-compose.nginx.yml
 !LICENSE.md
 !README.md
 !wp-cli.yml
