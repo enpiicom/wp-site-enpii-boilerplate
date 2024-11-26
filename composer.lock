@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbf94e45c0bc6a5610b41db64586b6e9",
+    "content-hash": "e193a2e1151a62aba2931cabce9c8c00",
     "packages": [
         {
             "name": "brick/math",
@@ -1104,16 +1104,16 @@
         },
         {
             "name": "enpii/enpii-base",
-            "version": "dev-develop",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/enpiicom/wp-plugin-enpii-base.git",
-                "reference": "7727330092a9f91fc1409c2efa42837475ec8576"
+                "reference": "b3ed448c98671a685cd31fe262b71b96726f558e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/7727330092a9f91fc1409c2efa42837475ec8576",
-                "reference": "7727330092a9f91fc1409c2efa42837475ec8576",
+                "url": "https://api.github.com/repos/enpiicom/wp-plugin-enpii-base/zipball/b3ed448c98671a685cd31fe262b71b96726f558e",
+                "reference": "b3ed448c98671a685cd31fe262b71b96726f558e",
                 "shasum": ""
             },
             "require": {
@@ -1130,6 +1130,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "~1.0.0",
                 "phpcompatibility/php-compatibility": "~9.3.5"
             },
+            "default-branch": true,
             "type": "wordpress-muplugin",
             "extra": {
                 "exclude-from-files": [
@@ -1139,6 +1140,7 @@
             "autoload": {
                 "files": [
                     "src/Foundation/Support/helpers-utils.php",
+                    "src/Enpii_Base_Init.php",
                     "./enpii-base-bootstrap.php",
                     "./enpii-base-init.php"
                 ],
@@ -1146,7 +1148,10 @@
                     "Enpii_Base\\": "src",
                     "Enpii_Base\\Deps\\": "src-deps",
                     "Carbon\\Traits\\Creator\\": "src/Foundation/Support/Carbon/Traits/Creator.php"
-                }
+                },
+                "classmap": [
+                    "src/Enpii_Base_Init.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1169,7 +1174,7 @@
             "homepage": "https://enpii.com/wp-plugin-enpii-base",
             "support": {
                 "issues": "https://github.com/enpiicom/wp-plugin-enpii-base/issues",
-                "source": "https://github.com/enpiicom/wp-plugin-enpii-base/tree/develop"
+                "source": "https://github.com/enpiicom/wp-plugin-enpii-base/tree/v0.8.6"
             },
             "time": "2024-05-23T20:14:04+00:00"
         },
