@@ -18,6 +18,7 @@
 !README.md
 !wp-cli.yml
 !wp-config.php
+!wp-test.php
 !wp-content
 !wp-app
 
