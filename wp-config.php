@@ -17,7 +17,7 @@
  *
  * @package WordPress
  */
-df
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 $dotenv_filepath = dirname( __DIR__ ) . DIRECTORY_SEPARATOR . '.env';
