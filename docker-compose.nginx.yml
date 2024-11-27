@@ -32,7 +32,6 @@ services:
       # - /var/www/html/public/sub-folder/wp-content/upgrade
       # - /var/www/html/public/sub-folder/wp-content/uploads
       # Miscs
-      - ./dev-docker/log/apache/:/var/log/apache/
       - ./dev-docker/log/nginx/:/var/log/nginx/
       - ./dev-docker/log/wordpress/:/var/log/wordpress/
     env_file:
