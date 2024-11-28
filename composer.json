@@ -23,20 +23,22 @@
     ],
     "require": {
       "josegonzalez/dotenv": "4.0.0",
-      "mcaskill/composer-exclude-files": "^3.0.0",
+      "mcaskill/composer-exclude-files": "~4.0.0",
       "johnpbloch/wordpress-core": "^6.0",
       "wp-plugins/woocommerce": "^8.0",
       "wpackagist-theme/storefront": "^4.0",
       "wpackagist-theme/twentytwentyfour": "^1.0.0",
       "wpackagist-theme/twentytwentythree": "^1.0.0",
-      "enpii/enpii-base": "dev-wp-release",
+      "enpii/enpii-base": "dev-master",
       "enpii/demoda": "*",
       "enpii/appeara-alpha": "*",
       "php": "^7.3|^8.0"
     },
     "require-dev": {
       "automattic/vipwpcs": "^3.0.0",
-      "phpcompatibility/php-compatibility": "^9.3.5"
+      "phpcompatibility/php-compatibility": "^9.3.5",
+      "phpstan/phpstan": "~1.12",
+      "php-stubs/wordpress-stubs": "~6.6.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -84,8 +86,7 @@
     },
     "extra": {
       "exclude-from-files": [
-        "laravel/framework/src/Illuminate/Foundation/helpers.php",
-        "laravel/framework/src/Illuminate/Support/helpers.php"
+        "laravel/framework/src/Illuminate/Foundation/helpers.php"
       ],
       "installer-paths": {
         "wp-content/mu-plugins/{$name}/": [
@@ -118,11 +119,15 @@
       "phpcs": [
         "./vendor/bin/phpcs"
       ],
+      "phpstan": [
+        "./vendor/bin/phpstan"
+      ],
       "phpunit": [
         "./vendor/bin/phpunit"
       ],
       "test": [
         "@phpcs",
+        "@phpstan",
         "@phpunit"
       ]
     }

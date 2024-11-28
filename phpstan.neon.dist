@@ -1,0 +1,22 @@
+parameters:
+    level: max  # Set the analysis level (0-8 or 'max'). 'max' is the strictest.
+
+    paths:
+        - wp-content/themes
+		- wp-content/plugins  # Specify the directories or files you want PHPStan to analyze.
+
+    # Excludes certain paths from analysis, such as vendor or test directories
+    excludePaths:
+        - dev-docker
+		- dev-docs
+		- wp-admin
+		- wp-includes
+        - vendor
+        - tests
+
+    scanFiles:
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+
+    # Define autoload files, if necessary
+    bootstrapFiles:
+        - vendor/autoload.php
