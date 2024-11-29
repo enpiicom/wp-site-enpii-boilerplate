@@ -17,7 +17,7 @@ composer create-project enpii/wp-site-enpii-boilerplate <folder-name>
   ```
   composer create-project -s dev enpii/wp-site-enpii-boilerplate:dev-develop <folder-name>
   ```
-- Ensure that you have tne **.env** file, if it doesn't exists, you can copy from the example file
+- Ensure that you have the **.env** file, if it doesn't exists, you can copy from the example file
 ```
 cp .env.example .env
 ```
