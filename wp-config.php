@@ -126,8 +126,14 @@ if ( defined( 'WP_ALLOW_MULTISITE' ) && WP_ALLOW_MULTISITE && defined( 'MULTISIT
 
 // ## Below snippets are for installing plugins, themes from the Admin Dashboard
 define( 'FS_METHOD', getenv( 'FS_METHOD' ) ?: 'direct' );
-// define( 'FS_CHMOD_DIR', getenv( 'FS_CHMOD_DIR' ) ?: (0755 & ~ umask()) );
-// define( 'FS_CHMOD_FILE', getenv( 'FS_CHMOD_FILE' ) ?: (0664 & ~ umask()) );
+
+if ( ! empty( getenv( 'FS_CHMOD_DIR' ) ) ) {
+	define( 'FS_CHMOD_DIR', getenv( 'FS_CHMOD_DIR' ) );
+}
+
+if ( ! empty( getenv( 'FS_CHMOD_FILE' ) ) ) {
+	define( 'FS_CHMOD_FILE', getenv( 'FS_CHMOD_FILE' ) );
+}
 
 // For https
 // If we're behind a proxy server and using HTTPS, we need to alert WordPress of that fact
