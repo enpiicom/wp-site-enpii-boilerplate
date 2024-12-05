@@ -17,7 +17,6 @@
 !LICENSE.md
 !README.md
 !wp-cli.yml
-!wp-config-sample.php
 !wp-content
 !wp-app
 
@@ -33,7 +32,6 @@
 !.githooks/
 !.githooks/**
 
-wp-config.php
 ### This Project
 # Dotenv
 .env
